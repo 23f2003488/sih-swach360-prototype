@@ -1,31 +1,37 @@
-import { Container, Title, Image, Card, Text, SimpleGrid, Badge } from '@mantine/core';
+import { Container, Title, Image, Card, Text, SimpleGrid, Badge, Button, Group } from '@mantine/core';
+import { Link } from 'react-router-dom';
 import mapImage from '../assets/map-placeholder.jpg';
 
-const facilities = [
-  { name: 'Central Recycling Unit', type: 'Recycling', status: 'Open' },
-  { name: 'West-Side BioGas Plant', type: 'BioGas', status: 'Open' },
-  { name: 'City Waste-to-Energy', type: 'W-to-E', status: 'Temporarily Closed' },
+const scrapShops = [
+  { name: 'National Scrap Dealers', contact: '9876543210', status: 'Open' },
+  { name: 'City Recyclers', contact: '9876543211', status: 'Open' },
+  { name: 'Green Waste Co.', contact: '9876543212', status: 'Closes at 5 PM' },
 ];
 
 function CitizenFacilitiesMap() {
   return (
     <Container>
-      <Title order={2} mb="lg">Find Local Facilities</Title>
+       <Group justify="space-between" mb="lg">
+        <Title order={2}>Nearby Scrap Shops</Title>
+        <Link to="/citizen">
+            <Button variant="default">Back to Dashboard</Button>
+        </Link>
+      </Group>
       <SimpleGrid cols={{ base: 1, md: 2 }}>
         <Card withBorder radius="md">
           <Image
-            src={ mapImage }// Using the same map image
+            src={ mapImage }
             alt="Map of local facilities"
           />
         </Card>
         <div>
-          <Text fw={500} mb="sm">Nearby Locations:</Text>
-          {facilities.map((facility) => (
-            <Card withBorder radius="md" p="sm" mb="sm" key={facility.name}>
-              <Text fw={500}>{facility.name}</Text>
-              <Text size="sm" c="dimmed">Type: {facility.type}</Text>
-              <Badge color={facility.status === 'Open' ? 'green' : 'gray'}>
-                {facility.status}
+          <Text fw={500} mb="sm">Verified Locations:</Text>
+          {scrapShops.map((shop) => (
+            <Card withBorder radius="md" p="sm" mb="sm" key={shop.name}>
+              <Text fw={500}>{shop.name}</Text>
+              <Text size="sm" c="dimmed">Contact: {shop.contact}</Text>
+              <Badge color={shop.status === 'Open' ? 'green' : 'gray'}>
+                {shop.status}
               </Badge>
             </Card>
           ))}

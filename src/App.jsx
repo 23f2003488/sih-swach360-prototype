@@ -4,22 +4,33 @@ import { initialReports } from './dummyData';
 
 // Import Pages and Components
 import LoginPage from './pages/LoginPage';
+
 import AdminLayout from './components/AdminLayout';
 import AdminDashboard from './pages/AdminDashboard';
-import ChampionDashboard from './pages/ChampionDashboard';
+import FacilitiesMapPage from './pages/FacilitiesMapPage';
+import AnalyticsDashboard from './pages/AnalyticsDashboard';
+import UserManagementPage from './pages/UserManagementPage';
+
+import ChampionLayout from './components/ChampionLayout';
+import ChampionDashboard from './pages/champion/ChampionDashboard';
+import FileReportPage from './pages/champion/FileReportPage';
+import ReportsHistoryPage from './pages/champion/ReportsHistoryPage';
+import ChampionAnalyticsPage from './pages/champion/ChampionAnalyticsPage';
+import ChampionLeaderboardPage from './pages/champion/ChampionLeaderboardPage';
+
 import CitizenDashboard from './pages/CitizenDashboard';
 import CitizenLayout from './components/CitizenLayout';
-import FacilitiesMapPage from './pages/FacilitiesMapPage';
 import TrainingPage from './pages/TrainingPage';
-import WorkerDashboard from './pages/WorkerDashboard';
 import ReportNonCompliancePage from './pages/ReportNonCompliancePage';
-import VerifyReportsPage from './pages/VerifyReportsPage';
-import AnalyticsDashboard from './pages/AnalyticsDashboard';
-import WorkerRouteMapPage from './pages/WorkerRouteMapPage';
-import ChampionLayout from './components/ChampionLayout';
-import ChampionAreaDashboard from './pages/ChampionAreaDashboard';
 import CitizenFacilitiesMap from './pages/CitizenFacilitiesMap';
-import UserManagementPage from './pages/UserManagementPage';
+import NotificationsPage from './pages/NotificationsPage';
+import Module1Page from './pages/training/Module1Page';
+import Module2Page from './pages/training/Module2Page';
+import Module3Page from './pages/training/Module3Page';
+
+import WorkerDashboard from './pages/WorkerDashboard';
+import WorkerRouteMapPage from './pages/WorkerRouteMapPage';
+
 
 function App() {
   // 1. READ from LocalStorage when the app first loads
@@ -52,21 +63,26 @@ function App() {
         </Route>
 
         <Route path="/champion" element={<ChampionLayout />}>
-          <Route index element={<ChampionDashboard onAddReport={addReport} />} />
-          <Route path="map" element={<ChampionAreaDashboard />} />
+          <Route index element={<ChampionDashboard />} />
+          <Route path="leaderboard" element={<ChampionLeaderboardPage />} />
+          <Route path="file-report" element={<FileReportPage />} />
+          <Route path="reports" element={<ReportsHistoryPage />} />
+          <Route path="analytics" element={<ChampionAnalyticsPage />} />
         </Route>
 
         <Route path="/citizen" element={<CitizenLayout />}>
           <Route index element={<CitizenDashboard />} />
-          <Route path="training" element={<TrainingPage />} /> {/* Add this line */}
+          <Route path="training" element={<TrainingPage />} />
+          <Route path="training/module1" element={<Module1Page />} />
+          <Route path="training/module2" element={<Module2Page />} />
+          <Route path="training/module3" element={<Module3Page />} />
           <Route path="report" element={<ReportNonCompliancePage />} />
-          <Route path="facilities" element={<CitizenFacilitiesMap />} /> 
+          <Route path="facilities" element={<CitizenFacilitiesMap />} />
+          <Route path="notifications" element={<NotificationsPage />} />
         </Route>
 
         <Route path="/worker" element={<WorkerDashboard />} />
         <Route path="/worker/map" element={<WorkerRouteMapPage />} />
-
-        <Route path="/champion/verify" element={<VerifyReportsPage />} />
       </Routes>
     </BrowserRouter>
   );
