@@ -1,7 +1,7 @@
-import { Title, Card, Text, SimpleGrid, Badge, Image } from '@mantine/core';
-import mapImage from '../assets/map-placeholder.jpg';
+import { Title, Card, Text, SimpleGrid, Badge, Image, Group, Button } from '@mantine/core';
+import mapImage from '../assets/map-placeholder.jpg'; // Make sure this path is correct
+import { Link } from 'react-router-dom';
 
-// In a real app, this data would come from a database
 const facilities = [
   { name: 'Central Recycling Unit', type: 'Recycling', status: 'Operational' },
   { name: 'West-Side BioGas Plant', type: 'BioGas', status: 'Operational' },
@@ -11,13 +11,19 @@ const facilities = [
 function FacilitiesMapPage() {
   return (
     <>
-      <Title order={2} mb="lg">Waste Management Facilities</Title>
+      <Group justify="space-between" mb="lg">
+        <Title order={2}>Waste Management Facilities</Title>
+        <Link to="/admin">
+          <Button variant="default">Back</Button>
+        </Link>
+      </Group>
+
       <SimpleGrid cols={{ base: 1, lg: 2 }}>
         {/* Left Side: Map Image */}
         <Card withBorder radius="md" padding="lg">
           <Image
             radius="md"
-            src={ mapImage } // A placeholder map image
+            src={ mapImage }
             alt="Map of facilities"
           />
         </Card>

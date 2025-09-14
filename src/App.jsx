@@ -10,6 +10,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import FacilitiesMapPage from './pages/FacilitiesMapPage';
 import AnalyticsDashboard from './pages/AnalyticsDashboard';
 import UserManagementPage from './pages/UserManagementPage';
+import WardLeaderboardPage from './pages/WardLeaderboardPage';
 
 import ChampionLayout from './components/ChampionLayout';
 import ChampionDashboard from './pages/champion/ChampionDashboard';
@@ -28,9 +29,12 @@ import Module1Page from './pages/training/Module1Page';
 import Module2Page from './pages/training/Module2Page';
 import Module3Page from './pages/training/Module3Page';
 
-import WorkerDashboard from './pages/WorkerDashboard';
-import WorkerRouteMapPage from './pages/WorkerRouteMapPage';
-
+import WorkerLayout from './components/WorkerLayout';
+import WorkerDashboard from './pages/worker/WorkerDashboard';
+import WorkerTrainingPage from './pages/worker/WorkerTrainingPage';
+import WorkerNotificationsPage from './pages/worker/WorkerNotificationsPage';
+import RequestGearPage from './pages/worker/RequestGearPage';
+import LodgeComplaintPage from './pages/worker/LodgeComplaintPage';
 
 function App() {
   // 1. READ from LocalStorage when the app first loads
@@ -57,9 +61,10 @@ function App() {
 
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard reports={reports} />} />
-          <Route path="facilities" element={<FacilitiesMapPage />} />
           <Route path="analytics" element={<AnalyticsDashboard />} />
+          <Route path="facilities" element={<FacilitiesMapPage />} />
           <Route path="users" element={<UserManagementPage />} />
+          <Route path="leaderboard" element={<WardLeaderboardPage />} /> {/* Add this line */}
         </Route>
 
         <Route path="/champion" element={<ChampionLayout />}>
@@ -79,10 +84,16 @@ function App() {
           <Route path="report" element={<ReportNonCompliancePage />} />
           <Route path="facilities" element={<CitizenFacilitiesMap />} />
           <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="leaderboard" element={<ChampionLeaderboardPage />} />
         </Route>
 
-        <Route path="/worker" element={<WorkerDashboard />} />
-        <Route path="/worker/map" element={<WorkerRouteMapPage />} />
+        <Route path="/worker" element={<WorkerLayout />}>
+          <Route index element={<WorkerDashboard />} />
+          <Route path="training" element={<WorkerTrainingPage />} />
+          <Route path="notifications" element={<WorkerNotificationsPage />} />
+          <Route path="gear" element={<RequestGearPage />} />
+          <Route path="complaint" element={<LodgeComplaintPage />} /> 
+        </Route>
       </Routes>
     </BrowserRouter>
   );

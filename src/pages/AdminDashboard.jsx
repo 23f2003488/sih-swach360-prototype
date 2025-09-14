@@ -1,7 +1,6 @@
-import { Title, Table, Button, Badge } from '@mantine/core';
+import { Title, Table, Button, Badge, Group, TextInput, Select } from '@mantine/core';
 
-function AdminDashboard(props) {
-  const { reports } = props;
+function AdminDashboard({ reports }) {
   const rows = reports.map((report) => (
     <Table.Tr key={report.id}>
       <Table.Td>{report.householdId}</Table.Td>
@@ -12,16 +11,23 @@ function AdminDashboard(props) {
       </Table.Td>
       <Table.Td>{report.area}</Table.Td>
       <Table.Td>
-        {!report.reviewed && (
-           <Button size="xs">Review</Button>
-        )}
+        <Button size="xs" variant="outline">View Details</Button>
       </Table.Td>
     </Table.Tr>
   ));
 
   return (
     <>
-      <Title order={2} mb="lg">Live Non-Compliance Reports</Title>
+      <Group justify="space-between" mb="lg">
+        <Title order={2}>Live Reports</Title>
+        <Group>
+          <TextInput placeholder="Search by Household ID..."/>
+          <Select
+            placeholder="Filter by Status"
+            data={['All', 'Compliant', 'Non-Compliant']}
+          />
+        </Group>
+      </Group>
       <Table>
         <Table.Thead>
           <Table.Tr>
@@ -36,5 +42,4 @@ function AdminDashboard(props) {
     </>
   );
 }
-
 export default AdminDashboard;

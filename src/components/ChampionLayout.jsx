@@ -60,8 +60,7 @@ function ChampionLayout() {
           label="Logout"
           leftSection={<IconLogout size="1rem" />}
           onClick={handleLogout}
-          color="red"
-          style={{ marginTop: 'auto' }}
+          style={{ marginTop: 'auto', color: 'red' }}
         />
       </AppShell.Navbar>
 

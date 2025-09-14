@@ -1,7 +1,7 @@
-import { Title, Table, Badge, Group, Button, TextInput } from '@mantine/core';
+import { Title, Table, Badge, Group, Button, TextInput, Select } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 
-// Dummy data for the user list
 const users = [
   { id: 'citizen01', name: 'Ravi Kumar', role: 'Citizen', status: 'Active' },
   { id: 'champion01', name: 'Priya Sharma', role: 'Green Champion', status: 'Active' },
@@ -21,12 +21,7 @@ function UserManagementPage() {
       <Table.Td>
         <Badge color={user.status === 'Active' ? 'green' : 'gray'}>{user.status}</Badge>
       </Table.Td>
-      <Table.Td>
-        <Group gap="xs">
-          <Button size="xs" variant="outline">Edit</Button>
-          <Button size="xs" variant="outline" color="red">Suspend</Button>
-        </Group>
-      </Table.Td>
+      <Table.Td><Group gap="xs"><Button size="xs" variant="outline">Edit</Button></Group></Table.Td>
     </Table.Tr>
   ));
 
@@ -34,24 +29,20 @@ function UserManagementPage() {
     <>
       <Group justify="space-between" mb="lg">
         <Title order={2}>User Management</Title>
-        <TextInput
-          placeholder="Search users..."
-          leftSection={<IconSearch size="0.9rem" />}
+        <Link to="/admin"><Button variant="default">Back</Button></Link>
+      </Group>
+      <Group justify="flex-end" mb="md">
+        <TextInput placeholder="Search users..."/>
+        <Select
+          placeholder="Filter by Role"
+          data={['All', 'Citizen', 'Green Champion', 'Sanitation Worker']}
         />
       </Group>
       <Table>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Name</Table.Th>
-            <Table.Th>Role</Table.Th>
-            <Table.Th>Status</Table.Th>
-            <Table.Th>Actions</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
+        <Table.Thead><Table.Tr><Table.Th>Name</Table.Th><Table.Th>Role</Table.Th><Table.Th>Status</Table.Th><Table.Th>Actions</Table.Th></Table.Tr></Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
     </>
   );
 }
-
 export default UserManagementPage;

@@ -1,9 +1,16 @@
-import { Title, Text, SimpleGrid, Paper, Group, RingProgress } from '@mantine/core';
+import { Title, Text, SimpleGrid, Paper, Group, RingProgress, Button } from '@mantine/core';
+import { Link } from 'react-router-dom';
 
 function AnalyticsDashboard() {
   return (
     <>
-      <Title order={2} mb="lg">System-wide Analytics</Title>
+      <Group justify="space-between" mb="lg">
+        <Title order={2}>System-wide Analytics</Title>
+        <Link to="/admin">
+          <Button variant="default">Back</Button>
+        </Link>
+      </Group>
+
       <SimpleGrid cols={{ base: 1, sm: 3 }}>
         <Paper withBorder radius="md" p="md">
           <Group>
