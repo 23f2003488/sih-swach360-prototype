@@ -32,6 +32,9 @@ function LoginPage() {
                 <Button fullWidth variant="outline" onClick={() => navigate('/admin')}>
                     Login as ULB Admin
                 </Button>
+                <Button fullWidth variant="outline" onClick={() => navigate('/worker')}>
+                    Login as Sanitation Worker
+                </Button>
             </Stack >
         </Container >
     );

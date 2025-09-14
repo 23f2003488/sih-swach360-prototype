@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Container, Title, Stack, TextInput, Select, Button } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 // The component now receives the 'onAddReport' function as a prop
 function ChampionDashboard({ onAddReport }) {
   const navigate = useNavigate();
-  
+
   // State for each form input
   const [householdId, setHouseholdId] = useState('');
   const [status, setStatus] = useState('');
@@ -36,6 +36,9 @@ function ChampionDashboard({ onAddReport }) {
     <Container size="xs" py="xl">
       <Stack>
         <Title order={2} align="center">Submit New Report</Title>
+        <Link to="/champion/map">
+          <Button fullWidth variant="outline" mb="lg">View Area Monitoring Map</Button>
+        </Link>
         <TextInput
           label="Household ID"
           placeholder="e.g., D-404"

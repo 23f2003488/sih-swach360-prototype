@@ -1,4 +1,4 @@
-import { AppShell, Burger, Group, NavLink,Title } from '@mantine/core';
+import { AppShell, Burger, Group, NavLink, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Outlet, Link } from 'react-router-dom';
 import { IconReportAnalytics, IconMap, IconUsers, IconChartBar } from '@tabler/icons-react';
@@ -30,7 +30,8 @@ function AdminLayout() {
         <NavLink
           label="Analytics Dashboard"
           leftSection={<IconChartBar size="1rem" />}
-          disabled
+          component={Link}
+          to="/admin/analytics"
         />
 
         <NavLink
@@ -43,7 +44,8 @@ function AdminLayout() {
         <NavLink
           label="User Management"
           leftSection={<IconUsers size="1rem" />}
-          disabled
+          component={Link}
+          to="/admin/users"
         />
       </AppShell.Navbar>
 
