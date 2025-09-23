@@ -4,13 +4,14 @@ import { initialReports } from './dummyData';
 
 // Import Pages and Components
 import LoginPage from './pages/LoginPage';
+import { LanguageProvider } from './context/LanguageContext';
 
 import AdminLayout from './components/AdminLayout';
-import AdminDashboard from './pages/AdminDashboard';
-import FacilitiesMapPage from './pages/FacilitiesMapPage';
-import AnalyticsDashboard from './pages/AnalyticsDashboard';
-import UserManagementPage from './pages/UserManagementPage';
-import WardLeaderboardPage from './pages/WardLeaderboardPage';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import FacilitiesMapPage from './pages/admin/FacilitiesMapPage';
+import AnalyticsDashboard from './pages/admin/AnalyticsDashboard';
+import UserManagementPage from './pages/admin/UserManagementPage';
+import WardLeaderboardPage from './pages/admin/WardLeaderboardPage';
 
 import ChampionLayout from './components/ChampionLayout';
 import ChampionDashboard from './pages/champion/ChampionDashboard';
@@ -19,21 +20,23 @@ import ReportsHistoryPage from './pages/champion/ReportsHistoryPage';
 import ChampionAnalyticsPage from './pages/champion/ChampionAnalyticsPage';
 import ChampionLeaderboardPage from './pages/champion/ChampionLeaderboardPage';
 
-import CitizenDashboard from './pages/CitizenDashboard';
+import CitizenDashboard from './pages/citizens/CitizenDashboard';
 import CitizenLayout from './components/CitizenLayout';
-import TrainingPage from './pages/TrainingPage';
-import ReportNonCompliancePage from './pages/ReportNonCompliancePage';
-import CitizenFacilitiesMap from './pages/CitizenFacilitiesMap';
-import NotificationsPage from './pages/NotificationsPage';
+import TrainingPage from './pages/citizens/TrainingPage';
+import ReportNonCompliancePage from './pages/citizens/ReportNonCompliancePage';
+import CitizenFacilitiesMap from './pages/citizens/CitizenFacilitiesMap';
+import NotificationsPage from './pages/citizens/NotificationsPage';
 import Module1Page from './pages/training/Module1Page';
 import Module2Page from './pages/training/Module2Page';
 import Module3Page from './pages/training/Module3Page';
 
 import WorkerLayout from './components/WorkerLayout';
 import WorkerDashboard from './pages/worker/WorkerDashboard';
+import ScanQRPage from './pages/worker/ScanQRPage';
 import WorkerTrainingPage from './pages/worker/WorkerTrainingPage';
 import WorkerNotificationsPage from './pages/worker/WorkerNotificationsPage';
 import RequestGearPage from './pages/worker/RequestGearPage';
+import ScrapMarketplacePage from './pages/worker/ScrapMarketplacePage';
 import LodgeComplaintPage from './pages/worker/LodgeComplaintPage';
 
 function App() {
@@ -55,47 +58,51 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
+    <LanguageProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
 
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<AdminDashboard reports={reports} />} />
-          <Route path="analytics" element={<AnalyticsDashboard />} />
-          <Route path="facilities" element={<FacilitiesMapPage />} />
-          <Route path="users" element={<UserManagementPage />} />
-          <Route path="leaderboard" element={<WardLeaderboardPage />} /> {/* Add this line */}
-        </Route>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard reports={reports} />} />
+            <Route path="analytics" element={<AnalyticsDashboard />} />
+            <Route path="facilities" element={<FacilitiesMapPage />} />
+            <Route path="users" element={<UserManagementPage />} />
+            <Route path="leaderboard" element={<WardLeaderboardPage />} /> {/* Add this line */}
+          </Route>
 
-        <Route path="/champion" element={<ChampionLayout />}>
-          <Route index element={<ChampionDashboard />} />
-          <Route path="leaderboard" element={<ChampionLeaderboardPage />} />
-          <Route path="file-report" element={<FileReportPage />} />
-          <Route path="reports" element={<ReportsHistoryPage />} />
-          <Route path="analytics" element={<ChampionAnalyticsPage />} />
-        </Route>
+          <Route path="/champion" element={<ChampionLayout />}>
+            <Route index element={<ChampionDashboard />} />
+            <Route path="leaderboard" element={<ChampionLeaderboardPage />} />
+            <Route path="file-report" element={<FileReportPage />} />
+            <Route path="reports" element={<ReportsHistoryPage />} />
+            <Route path="analytics" element={<ChampionAnalyticsPage />} />
+          </Route>
 
-        <Route path="/citizen" element={<CitizenLayout />}>
-          <Route index element={<CitizenDashboard />} />
-          <Route path="training" element={<TrainingPage />} />
-          <Route path="training/module1" element={<Module1Page />} />
-          <Route path="training/module2" element={<Module2Page />} />
-          <Route path="training/module3" element={<Module3Page />} />
-          <Route path="report" element={<ReportNonCompliancePage />} />
-          <Route path="facilities" element={<CitizenFacilitiesMap />} />
-          <Route path="notifications" element={<NotificationsPage />} />
-          <Route path="leaderboard" element={<ChampionLeaderboardPage />} />
-        </Route>
+          <Route path="/citizen" element={<CitizenLayout />}>
+            <Route index element={<CitizenDashboard />} />
+            <Route path="training" element={<TrainingPage />} />
+            <Route path="training/module1" element={<Module1Page />} />
+            <Route path="training/module2" element={<Module2Page />} />
+            <Route path="training/module3" element={<Module3Page />} />
+            <Route path="report" element={<ReportNonCompliancePage />} />
+            <Route path="facilities" element={<CitizenFacilitiesMap />} />
+            <Route path="notifications" element={<NotificationsPage />} />
+            <Route path="leaderboard" element={<ChampionLeaderboardPage />} />
+          </Route>
 
-        <Route path="/worker" element={<WorkerLayout />}>
-          <Route index element={<WorkerDashboard />} />
-          <Route path="training" element={<WorkerTrainingPage />} />
-          <Route path="notifications" element={<WorkerNotificationsPage />} />
-          <Route path="gear" element={<RequestGearPage />} />
-          <Route path="complaint" element={<LodgeComplaintPage />} /> 
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route path="/worker" element={<WorkerLayout />}>
+            <Route index element={<WorkerDashboard />} />
+            <Route path="scan-qr" element={<ScanQRPage />} />
+            <Route path="training" element={<WorkerTrainingPage />} />
+            <Route path="notifications" element={<WorkerNotificationsPage />} />
+            <Route path="gear" element={<RequestGearPage />} />
+            <Route path="complaint" element={<LodgeComplaintPage />} />
+            <Route path="marketplace" element={<ScrapMarketplacePage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
 

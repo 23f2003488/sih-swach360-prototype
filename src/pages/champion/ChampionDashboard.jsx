@@ -1,14 +1,23 @@
 import { Container, Title, Text, Card, Group, Button, Badge, Textarea, Paper } from '@mantine/core';
+import { useState } from 'react'; // Add useState
 
 // Hardcoded data for the prototype
-const citizenReports = [
+const initialReports = [
   { id: 101, location: 'Near Park A, Sector 5', issue: 'Large pile of uncollected garbage.', status: 'Pending' },
   { id: 102, location: 'Behind Main Market', issue: 'Construction debris dumped.', status: 'Pending' },
 ];
 
 function ChampionDashboard() {
+  const [reports, setReports] = useState(initialReports);
+  const [message, setMessage] = useState('');
+
   const handleSendMessage = () => {
     alert('Broadcast message sent to all citizens in Ward B.');
+  };
+
+  const handleVerify = (reportId) => {
+    setReports(reports.map(report => report.id === reportId ? { ...report, status: 'Verified' } : report));
+    alert('Report has been marked as Verified.');
   };
 
   return (
@@ -23,19 +32,25 @@ function ChampionDashboard() {
         <Textarea
           placeholder="e.g., Please ensure waste is segregated for tomorrow's collection..."
           mt="sm"
+          value={message}
+          onChange={(event) => setMessage(event.currentTarget.value)}
         />
         <Button fullWidth mt="md" onClick={handleSendMessage}>Send Message</Button>
       </Paper>
 
       <Title order={4} mb="md">New Citizen Reports for Verification</Title>
-      {citizenReports.map((report) => (
+      {reports.map((report) => (
         <Card withBorder radius="md" p="md" mb="md" key={report.id}>
-          <Badge>{report.status}</Badge>
+          <Badge color={report.status === 'Verified' ? 'green' : 'yellow'}>{report.status}</Badge>
           <Text fw={500} mt="sm">{report.location}</Text>
           <Text size="sm" c="dimmed">{report.issue}</Text>
           <Group mt="md">
-            <Button size="xs" variant="outline" onClick={() => alert('This will assign a worker.')}>Assign to Worker</Button>
-            <Button size="xs" color="green" onClick={() => alert('This will mark the issue as resolved.')}>Mark Resolved</Button>
+            <Button size="xs" variant="outline" onClick={() => handleVerify(report.id)}>
+              Mark as Verified
+            </Button>
+            <Button size="xs" color="red">
+              Reject
+            </Button>
           </Group>
         </Card>
       ))}

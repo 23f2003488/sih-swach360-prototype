@@ -1,5 +1,5 @@
 import { Title, Card, Text, SimpleGrid, Badge, Image, Group, Button } from '@mantine/core';
-import mapImage from '../assets/map-placeholder.jpg'; // Make sure this path is correct
+import mapImage from '../../assets/map-placeholder.jpg'; // Make sure this path is correct
 import { Link } from 'react-router-dom';
 
 const facilities = [

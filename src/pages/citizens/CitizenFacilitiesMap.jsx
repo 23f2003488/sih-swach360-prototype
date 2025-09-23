@@ -1,6 +1,6 @@
 import { Container, Title, Image, Card, Text, SimpleGrid, Badge, Button, Group } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import mapImage from '../assets/map-placeholder.jpg';
+import mapImage from '../../assets/map-placeholder.jpg';
 
 const scrapShops = [
   { name: 'National Scrap Dealers', contact: '9876543210', status: 'Open' },
